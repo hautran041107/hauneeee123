@@ -3,234 +3,669 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Báo Tường: Tri Ân Người Lái Đò</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+    <title>Báo Tường 20/11 CĐCNTTK25</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@400;700;900&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+ 
+    <title>Infographic IT (Hồng)</title>
+ 
     <style>
-        /* CSS để tạo kiểu cho tờ báo tường */
+.handwriting-box {
+    background: rgba(5, 5, 5, 0.95);
+    border: 2px solid #FF00FF;
+    box-shadow: 0 0 15px #FF00FF;
+    border-radius: 8px;
+}
+#signatureCanvas {
+    border: 1px solid #FF00FF;
+    cursor: crosshair; 
+    background-color: #0a011a;
+}
+.canvas-header {
+    color: #00FFFF;
+    text-shadow: 0 0 5px #00FFFF;
+}
+.clear-button {
+    background-color: #FF00FF !important;
+    color: black !important;
+    font-weight: bold;
+}
 
         body {
-            /* Màu nền tươi sáng (màu kem nhạt) */
-            background-color: #fffaf0; 
-            font-family: 'Merriweather', serif; /* Phông chữ chính: dễ đọc và trang trọng */
-            line-height: 1.7;
-            color: #333;
-            padding: 20px;
+            padding:2rem 1rem;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #FCE7F6;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23FBCFE8' fill-opacity='0.15' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+            min-height: 100vh;
+            height: fit-content;
         }
-
-        /* Khung chính của tờ báo */
-        .bao-tuong-container {
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #ffffff; /* Nền giấy trắng */
-            
-            /* Đường viền màu hồng phấn, tạo cảm giác mềm mại, lễ hội */
-            border: 10px double #f4c2c2; 
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        html {
+            height: 100%;
         }
-
-        /* Phần đầu báo: Tiêu đề và Khẩu hiệu */
-        header {
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; }
+        .newspaper-title { font-family: 'Dancing Script', cursive; }
+        .paper-note {
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-left: 6px solid #3B82F6;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .paper-note:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .polaroid {
+            background: #fff;
+            padding: 1rem;
+            padding-bottom: 4rem;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: all 0.3s ease-in-out;
+        }
+        .polaroid img { border: 1px solid #E5E7EB; }
+        .polaroid:hover {
+            transform: scale(1.05) rotate(0deg) !important;
+            z-index: 10;
+        }
+        .polaroid-caption {
+            position: absolute;
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
             text-align: center;
-            border-bottom: 4px solid #f4c2c2;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        /* Tiêu đề chính (phông chữ nổi bật, viết tay) */
-        h1 {
             font-family: 'Dancing Script', cursive;
-            font-size: 4.5em; /* Cỡ chữ rất lớn cho tiêu đề */
-            color: #d90429; /* Màu đỏ đậm của tình yêu thương */
-            margin: 0;
-            font-weight: 700;
+            font-size: 1.25rem;
+            color: #374151;
+        }
+        .card-hover { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card-hover:hover {
+            transform: translateY(-10px) rotate(2deg);
+            box-shadow: 0 20px 40px -15px rgba(0,0,0,0.2);
+        }
+        .sticker { box-shadow: 5px 5px 0px #000000; }
+        
+        @media print {
+            @page {
+                margin: 0.5cm;
+                size: A2 portrait;
+            }
+            body { 
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                zoom: 0.95; 
+                padding: 0.5cm;
+            }
+            .fixed.inset-0.pointer-events-none.z-0 {
+                display: none;
+            }
+            .absolute.inset-0.z-10.pointer-events-none {
+                left: 0.2cm !important;
+                right: 0.2cm !important;
+                top: 0.2cm !important;
+                bottom: 0.2cm !important;
+            }
+            .max-w-7xl.mx-auto.relative.z-20 {
+                max-width: none !important;
+                width: 100% !important;
+            }
+            .newspaper-title { font-size: 5rem !important; }
+            h1 { font-size: 5.5rem !important; }
+            .newspaper-title.text-4xl { font-size: 2.5rem !important; }
+            .text-xl { font-size: 1.1rem !important; }
+            .text-2xl { font-size: 1.2rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-5xl { font-size: 3rem !important; }
+            .text-lg { font-size: 1rem !important; }
+            .text-base { font-size: 0.9rem !important; }
+            .text-sm { font-size: 0.8rem !important; }
         }
 
-        /* Khẩu hiệu (phông chữ nghiêng, màu xanh hy vọng) */
-        h2.slogan {
-            font-family: 'Merriweather', serif;
-            font-size: 1.6em;
-            color: #006400; /* Màu xanh lá đậm */
-            font-style: italic;
-            margin-top: 10px;
+        @keyframes shine {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
 
-        /* Tiêu đề các mục nhỏ (cùng phông chữ viết tay) */
-        h3 {
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.8em;
-            color: #005f73; /* Màu xanh biển sâu, màu của tri thức */
-            text-align: center;
-            margin-top: 30px;
-            margin-bottom: 15px;
+        .animate-shine {
+            background-image: linear-gradient(
+                to right,
+                #d1d5db 0%,
+                #a0aec0 20%,
+                #d1d5db 40%,
+                #a0aec0 60%,
+                #d1d5db 80%,
+                #a0aec0 100%  
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 200% 100%;
+            animation: shine 5s infinite linear;
+        }
+        @keyframes shine-slow {
+            0% { background-position: -300% 0; }
+            100% { background-position: 300% 0; }
         }
 
-        /* Định dạng các đoạn văn bản */
-        p {
-            font-size: 1.1em;
-            text-align: justify; /* Căn đều 2 bên cho đẹp mắt */
+        .animate-shine-slow {
+            background-image: linear-gradient(
+                to right,
+                #d1d5db 0%,
+                #a0aec0 10%,
+                #d1d5db 20%,
+                #a0aec0 30%,
+                #d1d5db 40%,
+                #a0aec0 50%,
+                #d1d5db 60%,
+                #a0aec0 70%,
+                #d1d5db 80%,
+                #a0aec0 90%,
+                #d1d5db 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            background-size: 300% 100%;
+            animation: shine-slow 8s infinite linear;
         }
-
-        /* Định dạng hình ảnh */
-        img.main-image {
+        
+        .mini-infographic {
+            width: 100%; 
+            margin-top: 1.5rem; 
+            background-color: #e0f2fe; 
+            border: 3px solid #3b82f6; 
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transform: rotate(3deg);
+            z-index: 50;
+            font-size: 0.875rem; 
+        }
+        .mini-infographic h3 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            color: #1e40af; 
+            border-bottom: 2px solid #93c5fd;
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .mini-infographic ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 0.5rem;
+        }
+        .mini-infographic li {
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+        }
+        .mini-infographic li span {
+            margin-right: 0.5rem;
+            font-weight: 600;
+            color: #059669; 
+        }
+        
+        .it-intro-note {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background-color: #fff7ed; 
+            border: 2px dashed #f97316; 
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #7c2d12; 
+            transform: rotate(-2deg);
+        }
+        .snow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 3px solid #f4c2c2;
-            margin-bottom: 20px;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 5; 
+            overflow: hidden;
         }
-
-        img.inline-image {
-            width: 45%;
-            border-radius: 8px;
-            border: 3px solid #f4c2c2;
-            margin: 15px 0;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
+        .snowflake {
+            position: absolute;
+            top: -20px; 
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7; 
+            animation: fall linear infinite;
         }
-
-        /* Định dạng cho các câu thơ */
-        blockquote {
-            font-family: 'Merriweather', serif;
-            font-style: italic;
-            font-size: 1.2em;
-            color: #555;
-            border-left: 5px solid #f4c2c2;
-            padding-left: 20px;
-            margin: 25px auto;
-            width: 80%;
-            text-align: center;
-            /* Giữ nguyên các dấu xuống dòng của bài thơ */
-            white-space: pre-line; 
+        @keyframes fall {
+            0% {
+                transform: translateY(0vh) translateX(0) scale(var(--scale, 1));
+            }
+            100% {
+                transform: translateY(105vh) translateX(var(--sway, 20px)) scale(var(--scale, 1));
+            }
         }
-
-        /* Phần chân báo */
-        footer {
-            text-align: center;
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.2em;
-            color: #d90429;
-            margin-top: 40px;
-            border-top: 2px dashed #f4c2c2;
-            padding-top: 20px;
-        }
-
+        .snowflake:nth-child(1) { width: 8px; height: 8px; left: 5%; animation-duration: 14s; animation-delay: 0s; --sway: 30px; --scale: 1.2; }
+        .snowflake:nth-child(2) { width: 12px; height: 12px; left: 10%; animation-duration: 9s; animation-delay: -5s; --sway: -40px; --scale: 1.5; }
+        .snowflake:nth-child(3) { width: 6px; height: 6px; left: 15%; animation-duration: 18s; animation-delay: -2s; --sway: 20px; --scale: 0.9; }
+        .snowflake:nth-child(4) { width: 10px; height: 10px; left: 20%; animation-duration: 11s; animation-delay: -8s; --sway: -50px; --scale: 1.3; }
+        .snowflake:nth-child(5) { width: 14px; height: 14px; left: 25%; animation-duration: 7s; animation-delay: -1s; --sway: 60px; --scale: 1.6; }
+        .snowflake:nth-child(6) { width: 7px; height: 7px; left: 30%; animation-duration: 16s; animation-delay: -6s; --sway: -30px; --scale: 1.1; }
+        .snowflake:nth-child(7) { width: 11px; height: 11px; left: 35%; animation-duration: 10s; animation-delay: -3s; --sway: 40px; --scale: 1.4; }
+        .snowflake:nth-child(8) { width: 9px; height: 9px; left: 40%; animation-duration: 13s; animation-delay: -7s; --sway: -20px; --scale: 1.2; }
+        .snowflake:nth-child(9) { width: 5px; height: 5px; left: 45%; animation-duration: 19s; animation-delay: -4s; --sway: 30px; --scale: 0.8; }
+        .snowflake:nth-child(10) { width: 13px; height: 13px; left: 50%; animation-duration: 8s; animation-delay: -9s; --sway: -60px; --scale: 1.5; }
+        .snowflake:nth-child(11) { width: 8px; height: 8px; left: 55%; animation-duration: 15s; animation-delay: -3s; --sway: 50px; --scale: 1.1; }
+        .snowflake:nth-child(12) { width: 10px; height: 10px; left: 60%; animation-duration: 12s; animation-delay: -1s; --sway: -40px; --scale: 1.3; }
+        .snowflake:nth-child(13) { width: 15px; height: 15px; left: 65%; animation-duration: 6s; animation-delay: -7s; --sway: 70px; --scale: 1.8; }
+        .snowflake:nth-child(14) { width: 7px; height: 7px; left: 70%; animation-duration: 17s; animation-delay: -0s; --sway: -30px; --scale: 1; }
+        .snowflake:nth-child(15) { width: 11px; height: 11px; left: 75%; animation-duration: 9s; animation-delay: -5s; --sway: 40px; --scale: 1.4; }
+        .snowflake:nth-child(16) { width: 6px; height: 6px; left: 80%; animation-duration: 14s; animation-delay: -2s; --sway: -20px; --scale: 0.9; }
+        .snowflake:nth-child(17) { width: 12px; height: 12px; left: 85%; animation-duration: 10s; animation-delay: -8s; --sway: 50px; --scale: 1.5; }
+        .snowflake:nth-child(18) { width: 9px; height: 9px; left: 90%; animation-duration: 13s; animation-delay: -4s; --sway: -30px; --scale: 1.2; }
+        .snowflake:nth-child(19) { width: 5px; height: 5px; left: 95%; animation-duration: 18s; animation-delay: -1s; --sway: 20px; --scale: 0.8; }
+        .snowflake:nth-child(20) { width: 10px; height: 10px; left: 2%; animation-duration: 11s; animation-delay: -6s; --sway: -50px; --scale: 1.3; }
+        .snowflake:nth-child(21) { width: 13px; height: 13px; left: 18%; animation-duration: 7s; animation-delay: -3s; --sway: 60px; --scale: 1.6; }
+        .snowflake:nth-child(22) { width: 8px; height: 8px; left: 32%; animation-duration: 15s; animation-delay: -0s; --sway: -40px; --scale: 1.1; }
+        .snowflake:nth-child(23) { width: 14px; height: 14px; left: 48%; animation-duration: 8s; animation-delay: -7s; --sway: 70px; --scale: 1.7; }
+        .snowflake:nth-child(24) { width: 7px; height: 7px; left: 62%; animation-duration: 16s; animation-delay: -4s; --sway: -30px; --scale: 1; }
+        .snowflake:nth-child(25) { width: 11px; height: 11px; left: 78%; animation-duration: 10s; animation-delay: -9s; --sway: 40px; --scale: 1.4; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden relative">
 
-    <div class="bao-tuong-container">
-        
-        <header>
-            <h1>Tri Ân Người Lái Đò</h1>
-            <h2 class="slogan">"Tôn Sư Trọng Đạo - Uống Nước Nhớ Nguồn"</h2>
+    <div class="snow-container" aria-hidden="true">
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+        <div class="snowflake"></div>
+    </div>
+    
+    <div class="fixed inset-0 pointer-events-none z-0">
+        <div class="absolute top-1/4 left-1/4 transform -rotate-12 text-6xl opacity-30">
+            <span>💖</span>
+        </div>
+        <div class="absolute top-3/4 right-1/4 transform rotate-12 text-6xl opacity-30">
+            <span>✨</span>
+        </div>
+        <div class="absolute bottom-1/4 left-1/2 transform -translate-x-1/2 rotate-6 text-6xl opacity-30">
+            <span>📚</span>
+        </div>
+        <div class="absolute top-1/2 right-1/2 transform translate-x-1/2 -rotate-6 text-6xl opacity-30">
+            <span>🎉</span>
+        </div>
+        <div class="absolute top-1/3 right-1/3 transform rotate-180 text-6xl opacity-30">
+            <span>🎓</span>
+        </div>
+        <div class="absolute bottom-1/3 left-1/3 transform -rotate-45 text-6xl opacity-30">
+            <span>🌸</span>
+        </div>
+    </div>
+
+    <div class="absolute inset-0 z-0 pointer-events-none" style="left: 30rem; right: 30rem; top: 1rem; bottom: 1rem;">
+        <div class="absolute inset-0 border-8 border-dashed border-pink-400/60 rounded-5xl pointer-events-none">
+        </div>
+        <div class="absolute top-4 left-4 z-20 transform -rotate-12 text-4xl md:text-5xl opacity-80 pointer-events-none" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+            <span>🌸</span>
+        </div>
+        <div class="absolute top-4 right-4 z-20 transform rotate-12 text-4xl md:text-5xl opacity-80 pointer-events-none" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+            <span>✨</span>
+        </div>
+        <div class="absolute bottom-4 left-4 z-20 transform rotate-12 text-4xl md:text-5xl opacity-80 pointer-events-none" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+            <span>❤️</span>
+        </div>
+        <div class="absolute bottom-4 right-4 z-20 transform -rotate-12 text-4xl md:text-5xl opacity-80 pointer-events-none" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2);">
+            <span>📚</span>
+        </div>
+        <div class="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 z-20 transform rotate-90 text-3xl opacity-90 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>💖</span>
+        </div>
+        <div class="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 z-20 transform -rotate-90 text-3xl opacity-90 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>🎉</span>
+        </div>
+        <div class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 z-20 transform rotate-6 text-3xl opacity-90 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>🌟</span>
+        </div>
+        <div class="absolute left-1/2 bottom-0 -translate-x-1/2 translate-y-1/2 z-20 transform -rotate-6 text-3xl opacity-90 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>🎓</span>
+        </div>
+        <div class="absolute top-0 left-1/3 -translate-y-1/2 -translate-x-1/2 z-20 transform rotate-3 text-3xl opacity-80 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>❤️‍🔥</span>
+        </div>
+        <div class="absolute top-1/3 right-0 -translate-y-1/2 translate-x-1/2 z-20 transform -rotate-8 text-3xl opacity-80 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>💡</span>
+        </div>
+        <div class="absolute bottom-1/3 left-0 -translate-y-1/2 -translate-x-1/2 z-20 transform rotate-10 text-3xl opacity-80 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>📝</span>
+        </div>
+        <div class="absolute bottom-0 right-1/3 -translate-y-1/2 -translate-x-1/2 z-20 transform -rotate-5 text-3xl opacity-80 pointer-events-none" style="text-shadow: 1px 1px 3px rgba(0,0,0,0.15);">
+            <span>✨</span>
+        </div>
+    </div>
+<div class="max-w-6xl mx-auto relative z-20" style="width: fit-content;">
+        <img src="file:///C:/Users/CONG%20HAU/Downloads/logo-dncc.png"
+             alt="Logo DNCC"
+             class="absolute top-0 left-24 w-20 md:w-28 lg:w-36 h-auto object-contain z-50"
+             style="max-width: 150px;">
+        <img src="file:///C:/Users/CONG%20HAU/Downloads/logo%20cnttk25_preview_rev_1.png"
+             alt="Logo CĐCNTT K25 - Transparent"
+             class="absolute top-0 right-24 w-20 md:w-28 lg:w-36 h-auto object-contain z-50"
+             style="max-width: 150px;">
+
+        <header class="text-center mb-8 mt-4">
+            <h1 class="newspaper-title text-6xl md:text-8xl font-bold text-red-800 mb-1">
+                Lời Tri Ân
+                <span class="text-2xl md:text-4xl font-bold text-blue-600">
+                    (từ dân IT)
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl font-bold text-gray-700 tracking-tight">
+                Báo tường 20/11 - Phiên bản "Authentic"!
+            </p>
         </header>
 
-        <img src="https://placehold.co/800x300?text=Kính+Dâng+Thầy+Cô+20/11" alt="Tranh vẽ hoa hoặc các em học sinh tặng hoa thầy cô" class="main-image">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="space-y-6">
+                <article class="paper-note rounded-lg p-5 transform -rotate-2">
+                    <h2 class="text-2xl font-black text-blue-800 mb-3">
+                        <span class="text-3xl">📬</span> Lời Ngỏ
+                    </h2>
+                    <p class="text-gray-800 font-medium leading-relaxed space-y-3 text-base">
+                        <span>Gửi các "sensei" hệ real-life của chúng em!</span><br>
+                        <span>Hôm nay, không phải là một buổi trả bài hay thuyết trình, nhưng chúng em xin phép được "unmute" mic và bật "max volume" loa lòng để gửi gắm đôi lời.</span><br>
+                        <span>Tờ báo này, có thể không "perfect" như công thức Hóa, không logic như thuật toán Tin, nhưng 100% là "hàng real" - làm từ 100% sự biết ơn (và một chút "bất ổn" của tuổi GenZ).</span>
+                    </p>
+                </article>
+                <p class="newspaper-title text-3xl text-yellow-600 font-bold text-center transform rotate-6 border-4 border-dashed border-yellow-600 p-3 rounded-xl bg-yellow-50/50">
+                    "Người thầy như ngọn hải đăng, soi đường cho những con tàu lạc lối!"
+                </p>
+                <div class="bg-red-50 p-3 rounded-xl shadow-lg transform -rotate-3 border-2 border-red-300">
+                    <p class="newspaper-title text-2xl font-bold text-red-700 text-center">
+                        "Cảm ơn vì đã luôn hiểu và thương tụi em vô điều kiện!" ❤️
+                    </p>
+                </div>
+                <div class="polaroid transform rotate-3">
+                    <img src="file:///C:/Users/CONG%20HAU/Downloads/laprapanh.jpg" alt="Ảnh minh họa lớp học" class="w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=500&q=80'">
+                    <p class="polaroid-caption text-base">Khoảnh khắc cả lớp cùng lắp ráp chiếc máy — dù ban đầu còn bỡ ngỡ, nhưng rồi chúng ta vẫn hoàn thành trọn vẹn
+                    </p>
+                </div>
+                <div class="polaroid transform -rotate-1 mt-6">
+                    <img src="file:///C:/Users/CONG%20HAU/Downloads/anhk23.jpg" alt="Ảnh góc sáng tạo" class="w-full h-auto" onerror="this.src='https://images.unsplash.com/photo-1427504743050-dad446326749?w=500&q=80'">
+                    <p class="polaroid-caption text-base">Nhờ sự chỉ dẫn tận tình,kiên trì của các thầy cô mà nhiều thế hệ HSSV ngành CNTT đã tự tin thao tác,thực hành trên thiết bị</p>
+                </div>
+            </div>
 
-        <section class="loi-ngo">
-            <h3>Lời Ngỏ</h3>
-            <p>
-                Tháng 11 về, mang theo cơn gió se lạnh đầu mùa, mang theo hương hoa sữa nồng nàn và cũng là lúc mang về cho chúng ta những cảm xúc bồi hồi, xao xuyến khi nhớ về ngày 20/11 – Ngày Hiến chương Nhà giáo Việt Nam. Đây là dịp để toàn xã hội tôn vinh những người thầy, người cô đáng kính - những người đã và đang thầm lặng cống hiến cho sự nghiệp "trồng người".
-            </p>
-            <p>
-                Hòa chung không khí hân hoan ấy, tập thể lớp [Tên Lớp Của Bạn] chúng em xin được gửi gắm tất cả tình yêu thương, lòng kính trọng và biết ơn vô hạn qua tờ báo tường nhỏ này. Đây là món quà tinh thần, là đóa hoa thơm ngát nhất mà chúng em muốn kính dâng lên quý thầy cô.
-            </p>
-        </section>
+            <div class="space-y-6">
+                <article class="paper-note rounded-lg p-5 transform rotate-1">
+                    <h2 class="text-2xl font-black text-pink-700 mb-3">
+                        <span class="text-3xl">💌</span> Lời Tri Ân
+                    </h2>
+                    <p class="text-gray-800 font-medium leading-relaxed space-y-3 text-base">
+                        <span>Biết ơn thầy cô đã "gánh team" không chỉ deadline mà còn "gánh" cả những nỗi "bất ổn" của chúng em.</span><br>
+                        <span>Cảm ơn vì đã là "Google" đời thực, trả lời mọi câu hỏi "tại sao" và là "GPS" chỉ đường mỗi khi chúng em "lạc trôi". Cảm ơn vì đã kiên nhẫn "debug" lỗi sai và "update" cho chúng em những "bản vá" xịn nhất.</span><br>
+                        <span>Chúc thầy cô "luôn keo", "mãi mận", sức khỏe "vô cực", và luôn giữ được "vibe" tích cực này để "flex" cùng chúng em!</span>
+                    </p>
+                </article>
 
-        <section class="tri-an">
-            <h3>Lời Tri Ân Sâu Sắc</h3>
-            <p>
-                Kính thưa quý thầy cô!
-            </p>
-            <p>
-                Có ai đó đã ví, thầy cô là "người lái đò thầm lặng" chở bao thế hệ học trò qua dòng sông tri thức. Con đò ấy cứ âm thầm, bền bỉ đi về, không quản ngại mưa nắng, bão giông. Tóc thầy cô đã điểm bạc theo bụi phấn, sức khỏe đã vơi đi theo năm tháng, chỉ để đổi lấy cho chúng em những bài học hay, những kiến thức quý giá.
-            </p>
-            <p>
-                Chúng em làm sao quên được những bàn tay tận tụy uốn nắn chúng em từng nét chữ đầu đời; làm sao quên được giọng nói ấm áp giảng giải những bài toán khó; và làm sao quên được những ánh mắt nghiêm khắc mà đầy yêu thương khi chúng em lỡ phạm lỗi lầm. Thầy cô không chỉ dạy chúng em kiến thức trong sách vở, mà còn dạy chúng em cách làm người, cách đối nhân xử thế, cách yêu thương và tha thứ.
-            </p>
-            <p>
-                Công ơn ấy, chúng em xin nguyện khắc cốt ghi tâm. Chúng em xin hứa sẽ luôn chăm ngoan, học giỏi, vâng lời thầy cô để trở thành những người con ngoan, trò giỏi, những công dân có ích cho xã hội, xứng đáng với sự hy sinh và mong mỏi của thầy cô.
-            </p>
-            <img src="https://placehold.co/400x250?text=Tranh+vẽ+Thầy+Cô+và+Bụi+Phấn" alt="Tranh vẽ thầy cô đứng trên bục giảng" class="inline-image">
-        </section>
-
-        <section class="goc-tho">
-            <h3>Góc Thơ Tri Ân</h3>
+                <div class="p-4 bg-gradient-to-br from-pink-50 via-red-50 to-purple-50 font-sans flex justify-center"> 
+                    <div class="max-w-xl mx-auto shadow-2xl rounded-xl overflow-hidden transform rotate-3"> 
+                        <div class="bg-gradient-to-r from-pink-600 to-purple-700 text-white p-3 relative"> 
+                            <h1 class="text-xl md:text-2xl font-extrabold text-center mb-2 drop-shadow-lg">Infographic IT (Góc nhìn K25)</h1>
+                            <div class="flex flex-col md:flex-row justify-between space-y-2 md:space-y-0 md:space-x-2">
+                                <div class="w-full md:w-1/3 p-2 rounded-lg bg-black/20 backdrop-blur-sm shadow-md relative">
+                                    <p class="font-bold text-sm mb-0.5 border-b border-white/50 pb-0.5 flex items-center">Lĩnh vực HOT <span class="ml-1 text-yellow-300 text-base">⭐</span></p>
+                                    <ul class="text-xs space-y-0.5 opacity-90">
+                                        <li><span>💻</span> Software Dev</li>
+                                        <li><span>🧠</span> Data Science/AI</li>
+                                        <li><span>🛡️</span> Cyber Security <span class="ml-1 text-red-400">🚨</span></li>
+                                    </ul>
+                                </div>
+                                <div class="w-full md:w-1/3 p-2 rounded-lg bg-black/20 backdrop-blur-sm shadow-md relative">
+                                    <p class="font-bold text-sm mb-0.5 border-b border-white/50 pb-0.5 flex items-center">Kỹ năng Vàng <span class="ml-1 text-red-400 text-base">🚀</span></p>
+                                    <ul class="text-xs space-y-0.5 opacity-90">
+                                        <li><span>💡</span> Logic & Giải thuật</li>
+                                        <li><span>🛠️</span> Self-Learning</li>
+                                        <li><span>🤝</span> Teamwork</li>
+                                    </ul>
+                                </div>
+                                <div class="w-full md:w-1/3 p-2 rounded-lg bg-black/20 backdrop-blur-sm shadow-md relative">
+                                    <p class="font-bold text-sm mb-0.5 border-b border-white/50 pb-0.5">Tương lai (Growth)</p>
+                                    <ul class="text-xs space-y-0.5 opacity-90">
+                                        <li><span>🚀</span> AI & Machine Learning</li>
+                                        <li><span>🔗</span> Blockchain/Web3</li>
+                                        <li><span>☁️</span> Cloud Computing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-3 bg-white/50 backdrop-blur-md border-t-4 border-yellow-400 relative text-gray-800"> 
+                            <h2 class="font-extrabold text-lg mb-1 text-pink-700 flex items-center relative">
+                                <span class="text-xl mr-2 text-yellow-500">✨</span> CNTT: Ngành Kiến Tạo Thế Giới Số 
+                                <span class="absolute top-1 -right-4 text-3xl transform -rotate-12">💡</span>
+                            </h2>
+                            <p class="text-xs leading-normal text-gray-800">
+                                IT là lĩnh vực thiết kế, phát triển và tối ưu hệ thống thông tin bằng máy tính, phần mềm. Từ ứng dụng di động, AI đến bảo mật, IT là thế giới sáng tạo không giới hạn, nơi logic biến ý tưởng thành giá trị thực tiễn.
+                            </p>
+                            <span class="absolute bottom-2 left-2 text-3xl transform rotate-6 z-10">🤖</span>
+                            <span class="absolute bottom-2 right-2 text-3xl transform -rotate-6 z-10">🌍</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <article class="paper-note rounded-lg p-5 transform -rotate-1" style="border-left-color: #F59E0B;">
+                    <h2 class="text-2xl font-black text-yellow-700 mb-3">
+                        <span class="text-3xl">💻</span> Mã Nguồn Yêu Thương
+                    </h2>
+                    <p class="text-gray-800 font-medium leading-relaxed space-y-2 italic text-lg" style="font-family: 'Dancing Script', cursive; line-height: 1.8rem;">
+                        <span>Từng dòng kiến thức thầy gieo sáng,</span><br>
+                        <span>Như mã nguồn trong trẻo dẫn đường xa.</span><br>
+                        <span>Gỡ lỗi tâm hồn khi vấp ngã,</span><br>
+                        <span>Cập nhật niềm tin mỗi độ qua.</span><br><br>
+                        <span>Server lòng thầy bền không tắt,</span><br>
+                        <span>Dữ liệu yêu thương chẳng phai nhòa.</span><br>
+                        <span>Học trò mai bước muôn phương mới,</span><br>
+                        <span>Vẫn giữ backup nghĩa ân nhà.</span><br>
+                        <span>(cre:sưu tầm)</span>
+                    </p>
+                </article>
+                
+                <div class="polaroid transform -rotate-10  mt-6"
+                    style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 8px #FFD700, 0 0 0 10px #fff;">
+                    <img src="file:///C:/Users/CONG%20HAU/Downloads/anh1234.jpg" 
+                                                    alt="Ảnh tập thể K25" 
+                            D                       class="w-full h-auto"
+                                _                   onerror="this.src='file:///C:/Users/CONG%20HAU/Downloads/anh1234.jpg'">
+                    <p class="polaroid-caption text-lg text-yellow-700 font-bold">"lớp mình trong hội thi văn nghệ chào mừng 20/11 nè,trông dthw hăm:3!"</p>
+                </div>
+            </div>
             
-            <blockquote>
-                Một đời người – một dòng sông...
-                Mấy ai làm kẻ đứng trông bến bờ,
-                "Muốn qua sông phải lụy đò"
-                Đường đời muôn bước cậy nhờ người đưa...
-                Tháng năm dầu dãi nắng mưa,
-                Con đò tri thức thầy đưa bao người.
-                <br>
-                <em>(Trích Người Lái Đò - Thảo Nguyên)</em>
-            </blockquote>
+            <div class="space-y-6">
+                <div class="relative h-10">
+                    <span class="inline-block bg-red-500 text-black font-bold px-3 py-1 rounded-full -rotate-6 absolute top-0 left-1/2 -translate-x-1/2 sticker text-sm md:text-base">
+                        ⚠️ "Flexing" nhẹ sự biết ơn!
+                    </span>
+                </div>
+                
+                <p class="newspaper-title text-2xl text-blue-700 font-bold text-center transform rotate-3 border-b-4 border-blue-700 pb-2">
+                    "Mãi yêu team giảng viên IT, và Khoa KHCB!"
+                </p>
+                <div class="bg-green-50 p-3 rounded-xl shadow-lg border-2 border-green-300 transform -rotate-2">
+                    <p class="newspaper-title text-2xl font-bold text-green-700 text-center">
+                        "Giờ học của thầy cô luôn là 'Vibe' tích cực nhất!" ✨
+                    </p>
+                </div>
+             
 
-            <blockquote>
-                Ơn dạy dỗ cao dường hơn núi,
-                Nghĩa cô thầy con ghi tạc trong tâm.
-                Dẫu đi muôn vạn dặm dài,
-                Vẫn luôn ghi nhớ công thầy cô ơi.
-                <br>
-                <em>(Sưu tầm)</em>
-            </blockquote>
-        </section>
+                <div class="polaroid transform rotate-6"
+                    style="box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2), 0 0 0 8px #FF6B6B, 0 0 0 10px #fff;">
+                    <img src="file:///C:/Users/CONG%20HAU/Downloads/anhgiaovien.jpg"
+                                                    alt="Kỷ niệm lớp học"
+                                                    class="w-full h-auto"
+                                                    onerror="this.src='file:///C:/Users/CONG%20HAU/Downloads/anhgiaovien.jpg'">
+                    <p class="polaroid-caption text-red-700 font-bold text-base">“Những thầy cô thân thương của chúng ta đang cùng nhau chụp ảnh 20/11 — sao chúng ta không chụp cùng các thầy cô nhỉ?”</p>
+                </div>
+                
+                <article class="paper-note rounded-lg p-5 transform -rotate-1" style="border-left-color: #10B981;">
+                    <h2 class="text-2xl font-black text-green-800 mb-3"><span class="text-3xl">🎤</span> 'Shout-out' Cực Mặn</h2>
+                    <ul class="text-gray-800 font-medium leading-relaxed space-y-3 text-base">
+                        <li><strong>Gửi 'Mama' Hợi (GVCN):</strong> Cảm ơn cô đã 'cân' cả chục cái 'bất ổn' của server lớp. Cô là 'tấm lá chắn' real nhất! 💖</li>
+                        <li><strong>Gửi 'Senior Dev' Huệ (CNTT):</strong> Cảm ơn cô đã 'debug' não và 'update' cho chúng em những 'thuật toán' xịn. 👩‍💻</li>
+                        <li><strong>Gửi 'Triết Gia' Thương (Chính Trị):</strong> Cảm ơn cô đã đưa chúng em 'du hành' vũ trụ Triết, 'overthinking' cực 'deep'! 🌌</li>
+                        <li><strong>Gửi 'Hardware God' Quang (CNTT):</strong> Cảm ơn thầy đã dạy cách 'build PC' không 'cháy' nhà và 'cắm' RAM không 'ngược'. ⚙️🚀</li>
+                    </ul>
+                </article>
+                
+                <p class="newspaper-title text-4xl text-red-600 font-bold text-center transform -rotate-3 p-2 mt-6 border-4 border-dashed border-red-600 rounded-xl bg-red-50/50">
+                    "Thầy Cô là nguồn cảm hứng code bất tận!"
+                </p>
 
-        <section class="cam-nghi">
-            <h3>Mái Trường - Nơi Chắp Cánh Ước Mơ</h3>
-            <p>
-                Nếu thầy cô là người cha, người mẹ thứ hai, thì mái trường này chính là ngôi nhà thứ hai của chúng em. Nơi đây đã lưu giữ biết bao kỷ niệm vui buồn của tuổi học trò. Dưới mái trường này, chúng em không chỉ được tiếp thu tri thức mà còn được học cách yêu thương, đoàn kết và sẻ chia.
-            </p>
-            <p>
-                Và ở đó, chúng em có những người bạn. Tình bạn tuổi học trò là thứ tình cảm trong sáng, thuần khiết nhất. Chúng ta đã cùng nhau cười, cùng nhau khóc, cùng nhau vượt qua những kỳ thi căng thẳng, cùng nhau chia sẻ những bí mật nhỏ xinh. Chính thầy cô là người đã vun đắp cho tình bạn ấy, dạy chúng em biết quý trọng những người xung quanh mình.
-            </p>
-        </section>
+                <div class="handwriting-box p-4 transform rotate-1 mt-6">
+                    <h3 class="canvas-header text-lg font-bold mb-2 flex justify-between items-center">
+                        <span class="text-xl mr-2">✍️</span> Thêm Chữ Ký/Lời Chúc Tay
+                    </h3>
+                    <canvas id="signatureCanvas" width="300" height="150" class="w-full"></canvas>
+                    <button id="clearButton" class="clear-button w-full mt-2 py-1 rounded-md text-sm hover:opacity-80 transition">
+                        Xóa nét vẽ
+                    </button>
+                </div>
+                
+                </div>
 
-        <section class="ky-niem">
-            <h3>Kỷ Niệm Vườn Trường</h3>
-            <p>
-                Ai trong chúng ta có thể quên được hàng ghế đá thân quen, gốc phượng già rực lửa mỗi khi hè về, hay tiếng trống trường rộn rã mỗi sớm mai? Vườn trường là nơi chứng kiến chúng em lớn lên từng ngày.
-            </p>
-            <p>
-                Chúng em nhớ những giờ ra chơi rộn rã tiếng cười, những trận cầu nảy lửa hay những lần tụm năm tụm ba ôn bài dưới tán cây. Nhớ cả những lần bị thầy cô gọi lên bảng khi chưa thuộc bài, vừa run vừa xấu hổ, nhưng sau đó lại là lời động viên ân cần. Tất cả những kỷ niệm ấy sẽ là hành trang quý giá, là ký ức đẹp nhất mà chúng em mang theo suốt cuộc đời.
-            </p>
-             <img src="https://placehold.co/400x250?text=Tranh+vẽ+Sân+Trường+và+Cây+Phượng" alt="Tranh vẽ sân trường, hàng ghế đá" class="inline-image">
-        </section>
-        
-        <section class="goc-tho-2">
-            <h3>Vần Thơ Kỷ Niệm</h3>
-            <blockquote>
-                Khi thầy viết bảng
-                Bụi phấn rơi rơi
-                Có hạt bụi nào
-                Rơi trên bục giảng
-                Có hạt bụi nào
-                Vương trên tóc thầy...
-                <br>
-                Em yêu phút giây này
-                Thầy em, tóc như bạc thêm
-                Bạc thêm vì bụi phấn
-                Cho em bài học hay.
-                <br>
-                <em>(Trích bài hát: Bụi Phấn)</em>
-            </blockquote>
-        </section>
+            <div class="col-span-1 md:col-span-3">
+                
+                     <footer class="text-center mt-8 pb-4">
+                    <p class="newspaper-title text-xl md:text-2xl font-bold text-purple-700 mb-4 px-3 transform rotate-[-1deg] italic" style="line-height: 1.4; text-shadow: 1px 1px 0px #fff; max-width: 900px; margin-left: auto; margin-right: auto;">
+                        Chỉ là sự vô tình mà tất cả mọi người hội ngộ nơi đây, được nâng đỡ bằng bàn tay vun đắp của thầy cô giảng viên, để có ngày mai sau trưởng thành. Hoa nào không nở bởi đất tốt, người nào thất bại bởi những bàn tay đầy nhiệt huyết vun đắp lên từng ngày
+                    </p>
+                    
+                    <div class="col-span-1 md:col-span-3 mt-4 text-center px-4">
+                        <p class="newspaper-title text-xl md:text-2xl font-bold italic leading-relaxed text-red-700 transform rotate-1" style="text-shadow: 1px 1px 0px #fff, 2px 2px 0px #FCA5A5; max-width: 900px; margin-left: auto; margin-right: auto;">
+                            Dù sau này có rời xa nhau, dù mỗi người một con đường khác nhau, thì hãy luôn khắc ghi vào trái tim những kỉ niệm đã qua và ta có thể chào nhau một tiếng khi mà ta gặp lại nhau vào ngày tháng năm ấy.
+                        </p>
+                    </div>
 
-
-        <footer>
-            Tập thể lớp [Tên Lớp Của Bạn]
-            <br>
-            Kính dâng!
-        </footer>
-
+                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-black text-gray-900 leading-none tracking-tighter mb-3 relative overflow-hidden inline-block" style="text-shadow: 4px 4px 0px rgba(0,0,0,0.15); perspective: 1000px;">
+                        <span class="block newspaper-title text-5xl md:text-7xl lg:text-8xl transform rotate-[-4deg] scale-105"
+                            style="color: #FF1A1A;
+                                    text-shadow:
+                                        1px 1px 0px #FF6B6B, 
+                                        2px 2px 0px #FF3B3B, 
+                                        4px 4px 0px #E60000, 
+                                        6px 6px 0px #B30000; 
+                                    -webkit-text-stroke: 1px #800000;
+                                    letter-spacing: 0.08em;">
+                                HAPPY
+                            </span>
+                        <span class="block newspaper-title text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-7xl md:text-9xl lg:text-10xl font-bold relative z-10 animate-shine-slow transform rotate-[2deg] scale-105"
+                            style="text-shadow: 4px 4px 0px rgba(0,0,0,0.15); -webkit-text-stroke: 1px #4B5563;">
+                            20/11
+                        </span>
+                    </h2>
+                    <div class="text-gray-700 font-bold text-base md:text-lg tracking-widest uppercase mt-4 mb-3">
+                        #HappyTeachersDay #GenZ_Say_Thanks #TriAnLopCNTTK25 #XuHuong
+                    </div>
+                    <p class="mt-4 text-xs text-gray-500 font-medium">
+                        COPYRIGHT © 2025 Được Thực Hiện Bởi Lớp CĐ Công Nghệ Thông Tin K25.
+                    </p>
+            
+                </footer>
+            </div>
+        </div>
     </div>
-    </body>
+    
+    <script>
+        const canvas = document.getElementById('signatureCanvas');
+        const clearButton = document.getElementById('clearButton');
+        const ctx = canvas.getContext('2d');
+        const userStrokeStyle = '#FF00FF';
+        const userLineWidth = 3;
+        
+        ctx.strokeStyle = userStrokeStyle;
+        ctx.lineWidth = userLineWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        let isDrawing = false;
+        let lastX = 0;
+        let lastY = 0;
+
+        function drawWatermarkText() {
+          
+            ctx.font = "bold 28px 'Dancing Script', cursive"; 
+            
+            ctx.strokeStyle = "#DC2626"; 
+            ctx.lineWidth = 2; 
+            
+           
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            
+           
+            ctx.strokeText("Hậu + CĐCNTTK25", canvas.width / 2, canvas.height / 2 + 5);
+
+           
+            ctx.strokeStyle = userStrokeStyle; 
+            ctx.lineWidth = userLineWidth;
+            ctx.textAlign = "left";
+            ctx.textBaseline = "top";
+        }
+
+        
+        
+        drawWatermarkText();
+        function draw(e) {
+            if (!isDrawing) return;
+          
+            ctx.strokeStyle = userStrokeStyle;
+            ctx.lineWidth = userLineWidth;
+            
+            ctx.beginPath();
+            ctx.moveTo(lastX, lastY);
+            const rect = canvas.getBoundingClientRect();
+            const currentX = (e.clientX || e.touches[0].clientX) - rect.left;
+            const currentY = (e.clientY || e.touches[0].clientY) - rect.top;
+            ctx.lineTo(currentX, currentY);
+            ctx.stroke();
+            [lastX, lastY] = [currentX, currentY];
+        }
+        canvas.addEventListener('mousedown', (e) => {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            [lastX, lastY] = [e.clientX - rect.left, e.clientY - rect.top];
+        });
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', () => isDrawing = false);
+        canvas.addEventListener('mouseout', () => isDrawing = false);
+        canvas.addEventListener('touchstart', (e) => {
+            isDrawing = true;
+            const rect = canvas.getBoundingClientRect();
+            [lastX, lastY] = [e.touches[0].clientX - rect.left, e.touches[0].clientY - rect.top];
+            e.preventDefault(); 
+        }, false);
+        canvas.addEventListener('touchmove', draw, false);
+        canvas.addEventListener('touchend', () => isDrawing = false, false);
+        canvas.addEventListener('touchcancel', () => isDrawing = false, false);
+
+        clearButton.addEventListener('click', () => {     
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawWatermarkText(); 
+        });
+    </script>
+        
+</body>
 </html>
